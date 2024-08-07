@@ -171,7 +171,7 @@
                 
                 <div class="services-section text-center">
                     <div class="services-container py-5">
-                        <div class="service-icon" id="service1" data-aos="fade-up" data-bs-toggle="popover" title="Tricky Network Solutions" data-bs-content="Comprehensive network solution for higher efficiency and improved productivity.<br><a href='services_2.html' class='learn-more mr-2'>Learn more >">
+                        <div class="service-icon" id="service1" data-aos="fade-up" data-bs-toggle="popover" title="Tricky Network Solutions" data-bs-content="Comprehensive network solution for higher efficiency and improved productivity.<br><a href='services_2.html' class='learn-more mr-2'>Learn more > </a><button id='popovercloseid' type='button' class='close'>&times;</button>">
                             <i class="bi bi-router-fill"></i>
                         </div>
                         <div class="service-icon" id="service2" data-aos="fade-up" data-bs-toggle="popover" title="Cloud Management" data-bs-content=" Impaling your Cloud Journey with personalized cloud solutions! <br><a href='services_1.html' class='learn-more'>Learn more > </a>">
@@ -210,19 +210,17 @@
         <section data-bs-version="5.1" class="features10 cid-uk0516cDtN" id="metrics-2-uk0516cDtN">
             <div class="container">  
                 <div class="row justify-content-center p-4 text-center mt-5 mb-4">
-                    <div class="item features-without-image col-12 col-md-6 col-lg-4">
+                    <div class="item features-without-image col-12 col-md-6 col-lg-3">
                         <div class="item-wrapper">
                         <div class="card-box align-left">
-                            
                             <p class="card-title mbr-fonts-style mb-3 display-1">
-                            <strong class="timer counter alt-font appear" data-to="500" data-speed="7000">500</strong>
+                            <strong class="timer counter alt-font appear" data-to="700" data-speed="7000">700</strong>
                             </p>
                             <p class="card-text mbr-fonts-style mb-3 display-7">Happy Clients</p>
-                            
                         </div>
                         </div>
                     </div>
-                    <div class="item features-without-image col-12 col-md-6 col-lg-4">
+                    <div class="item features-without-image col-12 col-md-6 col-lg-3">
                         <div class="item-wrapper">
                         <div class="card-box align-left">
                             
@@ -234,7 +232,18 @@
                         </div>
                         </div>
                     </div>
-                    <div class="item features-without-image col-12 col-md-6 col-lg-4">
+                    <div class="item features-without-image col-12 col-md-6 col-lg-3">
+                        <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <p class="card-title mbr-fonts-style mb-3 display-1">
+                            <strong class="timer counter alt-font appear" data-to="190" data-speed="7000">190</strong>
+                            </p>
+                            <p class="card-text mbr-fonts-style mb-3 display-7">Projects Completed</p>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div class="item features-without-image col-12 col-md-6 col-lg-3">
                         <div class="item-wrapper">
                         <div class="card-box align-left">
                             
@@ -865,6 +874,9 @@
             popoverTriggerEl.dataset.popoverInstance = popover;
         });
 
+
+        // service popover close action-beta
+
         marqueeInit({
             uniqueid: 'mycrawler1',
             inc: 5, //speed - pixel increment for each iteration of this marquee's movement
@@ -898,19 +910,30 @@
             random: true
         });
 
-        $('.counter').ready(function() {
-            $('.counter').each(function () {
-                $(this).prop('Counter',0).animate({
-                    Counter: $(this).text()
-                }, {
-                    duration: 4000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now));
-                    }
-                });
-            }); 
-        });  
+        $animated = true;
+        $element = $('.counter');
+        $(window).scroll(function() {
+            var hT = $element.offset().top,
+                hH = $element.outerHeight(),
+                wH = $(window).height(),
+                wS = $(this).scrollTop();
+            if (wS > (hT + hH - wH)) {
+                if($animated == true){
+                    $element.each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                        }, {
+                            duration: 4000,
+                            easing: 'swing',
+                            step: function (now) {
+                                $(this).text(Math.ceil(now));
+                            }
+                        });
+                    });
+                } 
+                $animated = false;
+            }
+        }); 
 
      AOS.init();
 
