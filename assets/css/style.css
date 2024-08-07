@@ -2958,12 +2958,19 @@ footer .credits {
 
 .clients img {
   opacity: 0.5;
-  width: 150px;
-  height: 200px;
+  width: 150px; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
+  object-fit: contain; /* Ensures images fit within the specified width */
   transition: 0.3s;
   filter: grayscale(100);
-  margin-right: 2rem;
+  margin: 0rem 1.2rem;
   transition: all 0.5 ease;
+}
+
+.client-container{
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .clients img:hover {
